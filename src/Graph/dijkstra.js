@@ -1,36 +1,44 @@
+import { MinPriorityQueue } from "@datastructures-js/priority-queue";
+
 export const dijkstra = (graph, start, end) => {
   const distances = {};
   const previous = {};
-  const queue = [];
+  const pq = new MinPriorityQueue((node) => node.distance);
+  const visited = new Set();
 
-  // Initialize distances and queue
-  graph.forEach((node) => {
-    distances[node.name] = Infinity;
-    previous[node.name] = null;
-    queue.push(node.name);
+  // Convert graph to a Map for fast lookup
+  const graphMap = new Map(graph.map(node => [node.name, node.neighbors]));
+
+  // Initialize distances
+  graph.forEach(({ name }) => {
+    distances[name] = Infinity;
+    previous[name] = null;
   });
   distances[start] = 0;
+  
+  // Start with the source node
+  pq.enqueue({ name: start, distance: 0 });
 
-  while (queue.length > 0) {
-    // Get the node with the smallest distance
-    queue.sort((a, b) => distances[a] - distances[b]);
-    const current = queue.shift();
+  while (!pq.isEmpty()) {
+    const { name: current, distance: currentDist } = pq.dequeue();
 
-    if (current === end) break;
+    if (visited.has(current)) continue; // Skip if already processed
+    visited.add(current);
 
-    const neighbors = graph.find((node) => node.name === current).neighbors;
-    neighbors.forEach(({ name, distance }) => {
-      const alt = distances[current] + distance;
-      if (alt < distances[name]) {
-        distances[name] = alt;
+    if (current === end) break; // Stop if we reached the target node
+
+    const neighbors = graphMap.get(current) || []; // Get all neighbor data from the graphMap
+    for (const { name, distance } of neighbors) {
+      const newDist = currentDist + distance;
+      if (newDist < distances[name]) {
+        distances[name] = newDist;
         previous[name] = current;
+        pq.enqueue({ name, distance: newDist });
       }
-    });
-
+    }
   }
- 
-  console.log(distances);
-  // Reconstruct the shortest path
+
+  // Reconstructing the shortest path
   const path = [];
   let currentNode = end;
   while (currentNode) {
@@ -38,5 +46,5 @@ export const dijkstra = (graph, start, end) => {
     currentNode = previous[currentNode];
   }
 
-  return { path, distance: distances[end] };
+  return { path };
 };

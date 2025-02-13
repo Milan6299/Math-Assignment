@@ -12,19 +12,19 @@ const universities = [
     ],
   },
   {
-    
+
     name: "Fakir Mohan Autonomous College",
     neighbors: [
       { name: "Fakir Mohan University", distance: 16 },
-      
+
     ],
   },
   {
-    
+
     name: "Fakir Mohan Medical College",
     neighbors: [
       { name: "Fakir Mohan University", distance: 5 },
-      
+
     ],
   },
   {
@@ -38,11 +38,11 @@ const universities = [
     ],
   },
   {
-    
+
     name: "MPC Autonomous College",
     neighbors: [
       { name: "MSCB University", distance: 0.35 },
-      
+
     ],
   },
   {
@@ -144,7 +144,7 @@ const universities = [
       { name: "Utkal University", distance: 10 },
     ],
   },
-  
+
   {
     name: "BJB Autonomous College",
     neighbors: [
@@ -254,7 +254,7 @@ const universities = [
       { name: "Panchayat College", distance: 13 },
     ],
   },
- 
+
   {
     // Sambalpur
     name: "Sambalpur University",
@@ -272,7 +272,7 @@ const universities = [
       { name: "Sambalpur University", distance: 16 },
     ],
   },
-  
+
   {
     name: "VSSUT",
     neighbors: [
@@ -330,7 +330,7 @@ const universities = [
   {
     name: "Dhenkanal Law College",
     neighbors: [
-      { name: "Dharanidhar Law College", distance: 152}
+      { name: "Dharanidhar Law College", distance: 152 }
     ]
   },
   {
@@ -375,7 +375,7 @@ const universities = [
       { name: "Maa Manikeswari University", distance: 103 },
       { name: "Lokadrishti Advance Technology", distance: 113 },
     ],
-  }, 
+  },
   {
     name: "Model Degree College",
     neighbors: [
@@ -385,7 +385,7 @@ const universities = [
       { name: "Indira Gandhi University", distance: 114 },
     ],
   },
-  
+
   {
     name: "Maa Manikeswari University",
     neighbors: [
@@ -424,7 +424,7 @@ const universities = [
     name: "Government College Koraput",
     neighbors: [
       { name: "Central University", distance: 16 },
-      
+
     ],
   },
   {
@@ -477,7 +477,7 @@ const universities = [
     neighbors: [
       { name: "Berhampur University", distance: 12 },
       { name: "Central University", distance: 316 },
-     
+
     ],
   },
 

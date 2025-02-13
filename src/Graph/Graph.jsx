@@ -9,7 +9,7 @@ const Graph = () => {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
 
-  // Transform data into graphData
+  // Transform data into graphData to make it readable for the ForceGraph Component
   const graphData = {
     nodes: universities.map((uni) => ({ id: uni.name })),
     links: universities.flatMap((uni) =>
@@ -21,6 +21,7 @@ const Graph = () => {
     ),
   };
 
+  // To calculate the shortest path and highlight the path on the ForceGraph component
   const handleFindShortestPath = (start, end) => {
     const { path } = dijkstra(universities, start, end);
     setShortestPath(path);
@@ -44,10 +45,11 @@ const Graph = () => {
         PG Colleges - Network
       </h1>
 
-      <div className="mb-4 fixed bottom-10 flex w-full z-10 px-20 justify-center items-center gap-20">
-        <div className="flex gap-10 items-center">
+      <div className="fixed h-28 bg-white bottom-0 flex w-full z-10 ">
+        <div className="w-full h-full bg-white flex justify-center items-center px-20 gap-20">
+          <div className="flex gap-10 bg-white items-center">
           <div className="text-xl font-semibold">Source:</div>
-          <div className="relative">
+          <div className="relative bg-white">
             <input
               className="border-2 px-2"
               value={source}
@@ -55,7 +57,7 @@ const Graph = () => {
               placeholder="Select Source"
             />
             <select
-              className="absolute left-0 top-10 w-full border-2"
+              className="absolute bg-white left-0 top-10 w-full border-2"
               onChange={(e) => setSource(e.target.value)}
               value=""
             >
@@ -71,7 +73,7 @@ const Graph = () => {
           </div>
 
           <div className="text-xl font-semibold">Destination:</div>
-          <div className="relative">
+          <div className="relative bg-white">
             <input
               className="border-2 px-2"
               value={destination}
@@ -79,7 +81,7 @@ const Graph = () => {
               placeholder="Select Destination"
             />
             <select
-              className="absolute left-0 top-10 w-full border-2"
+              className="absolute left-0 bg-white top-10 w-full border-2"
               onChange={(e) => setDestination(e.target.value)}
               value=""
             >
@@ -100,6 +102,8 @@ const Graph = () => {
         >
           Find Shortest Path
         </button>
+        </div>
+        
       </div>
       <div className=" bg-yellow-200 flex flex-col h-screen overflow-scroll w-96 fixed z-[999999] left-0 inset-0">
         <h2 className="text-4xl w-full bg-red-500 text-white font-semibold p-5">
@@ -114,6 +118,8 @@ const Graph = () => {
           ))}
         </div>
       </div>
+
+      {/* Force Graph Component  */}
       <ForceGraph2D
         graphData={graphData}
         nodeAutoColorBy="id"
